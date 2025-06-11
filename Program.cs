@@ -6,6 +6,31 @@ namespace ConsoleAppWithGit
 {
     class Program
     {
+        static void CheckPalindrome()
+        {
+            Console.WriteLine("\n--- Проверка палиндрома ---");
+            Console.Write("Введите строку для проверки: ");
+            string input = Console.ReadLine();
+            
+            // Удаляем пробелы и приводим к нижнему регистру
+            string cleaned = input.Replace(" ", "").ToLower();
+            bool isPalindrome = true;
+            
+            for (int i = 0; i < cleaned.Length / 2; i++)
+            {
+                if (cleaned[i] != cleaned[cleaned.Length - 1 - i])
+                {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+            
+            if (isPalindrome)
+                Console.WriteLine($"\"{input}\" - это палиндром!");
+            else
+                Console.WriteLine($"\"{input}\" - это не палиндром.");
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в многофункциональное консольное приложение!");
@@ -31,7 +56,7 @@ namespace ConsoleAppWithGit
                         Console.WriteLine("Генератор случайных чисел - функция будет реализована");
                         break;
                     case "3":
-                        Console.WriteLine("Проверка палиндрома - функция будет реализована");
+                        CheckPalindrome();
                         break;
                     case "4":
                         Console.WriteLine("Конвертер температуры - функция будет реализована");
