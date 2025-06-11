@@ -6,6 +6,35 @@ namespace ConsoleAppWithGit
 {
     class Program
     {
+        static void ConvertTemperature()
+        {
+            Console.WriteLine("\n--- Конвертер температуры ---");
+            Console.WriteLine("1. Цельсий в Фаренгейт");
+            Console.WriteLine("2. Фаренгейт в Цельсий");
+            Console.Write("Выберите тип конвертации: ");
+            string choice = Console.ReadLine();
+            
+            double temperature, converted;
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Введите температуру в Цельсиях: ");
+                    temperature = Convert.ToDouble(Console.ReadLine());
+                    converted = (temperature * 9 / 5) + 32;
+                    Console.WriteLine($"{temperature}°C = {converted}°F");
+                    break;
+                case "2":
+                    Console.Write("Введите температуру в Фаренгейтах: ");
+                    temperature = Convert.ToDouble(Console.ReadLine());
+                    converted = (temperature - 32) * 5 / 9;
+                    Console.WriteLine($"{temperature}°F = {converted}°C");
+                    break;
+                default:
+                    Console.WriteLine("Неверный выбор");
+                    break;
+            }
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в многофункциональное консольное приложение!");
@@ -34,7 +63,7 @@ namespace ConsoleAppWithGit
                         Console.WriteLine("Проверка палиндрома - функция будет реализована");
                         break;
                     case "4":
-                        Console.WriteLine("Конвертер температуры - функция будет реализована");
+                        ConvertTemperature();
                         break;
                     case "0":
                         running = false;
