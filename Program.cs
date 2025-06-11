@@ -6,6 +6,33 @@ namespace ConsoleAppWithGit
 {
     class Program
     {
+        static void GenerateRandomNumbers()
+        {
+            Console.WriteLine("\n--- Генератор случайных чисел ---");
+            Console.Write("Введите минимальное значение: ");
+            int min = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Введите максимальное значение: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Сколько чисел сгенерировать? ");
+            int count = Convert.ToInt32(Console.ReadLine());
+            
+            if (min >= max)
+            {
+                Console.WriteLine("Ошибка: минимальное значение должно быть меньше максимального");
+                return;
+            }
+            
+            Random random = new Random();
+            Console.WriteLine("Сгенерированные числа:");
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write(random.Next(min, max + 1) + " ");
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в многофункциональное консольное приложение!");
@@ -28,7 +55,7 @@ namespace ConsoleAppWithGit
                         Console.WriteLine("Калькулятор - функция будет реализована");
                         break;
                     case "2":
-                        Console.WriteLine("Генератор случайных чисел - функция будет реализована");
+                        GenerateRandomNumbers();
                         break;
                     case "3":
                         Console.WriteLine("Проверка палиндрома - функция будет реализована");
