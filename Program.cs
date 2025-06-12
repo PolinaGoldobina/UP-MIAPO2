@@ -44,19 +44,101 @@ namespace ConsoleAppWithGit
             Console.WriteLine($"Результат: {num1} {op} {num2} = {result}");
         }
 
+        static void GenerateRandomNumbers()
+        {
+            Console.WriteLine("\n--- Генератор случайных чисел ---");
+            Console.Write("Введите минимальное значение: ");
+            int min = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Введите максимальное значение: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Сколько чисел сгенерировать? ");
+            int count = Convert.ToInt32(Console.ReadLine());
+            
+            if (min >= max)
+            {
+                Console.WriteLine("Ошибка: минимальное значение должно быть меньше максимального");
+                return;
+            }
+            
+            Random random = new Random();
+            Console.WriteLine("Сгенерированные числа:");
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write(random.Next(min, max + 1) + " ");
+            }
+            Console.WriteLine();
+        }
+
+        static void CheckPalindrome()
+        {
+            Console.WriteLine("\n--- Проверка палиндрома ---");
+            Console.Write("Введите строку для проверки: ");
+            string input = Console.ReadLine();
+            
+            // Удаляем пробелы и приводим к нижнему регистру
+            string cleaned = input.Replace(" ", "").ToLower();
+            bool isPalindrome = true;
+            
+            for (int i = 0; i < cleaned.Length / 2; i++)
+            {
+                if (cleaned[i] != cleaned[cleaned.Length - 1 - i])
+                {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+            
+            if (isPalindrome)
+                Console.WriteLine($"\"{input}\" - это палиндром!");
+            else
+                Console.WriteLine($"\"{input}\" - это не палиндром.");
+        }
+
+        static void ConvertTemperature()
+        {
+            Console.WriteLine("\n--- Конвертер температуры ---");
+            Console.WriteLine("1. Цельсий в Фаренгейт");
+            Console.WriteLine("2. Фаренгейт в Цельсий");
+            Console.Write("Выберите тип конвертации: ");
+            string choice = Console.ReadLine();
+            
+            double temperature, converted;
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Введите температуру в Цельсиях: ");
+                    temperature = Convert.ToDouble(Console.ReadLine());
+                    converted = (temperature * 9 / 5) + 32;
+                    Console.WriteLine($"{temperature}°C = {converted}°F");
+                    break;
+                case "2":
+                    Console.Write("Введите температуру в Фаренгейтах: ");
+                    temperature = Convert.ToDouble(Console.ReadLine());
+                    converted = (temperature - 32) * 5 / 9;
+                    Console.WriteLine($"{temperature}°F = {converted}°C");
+                    break;
+                default:
+                    Console.WriteLine("Неверный выбор");
+                    break;
+            }
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в многофункциональное консольное приложение!");
-            Console.WriteLine("Выберите функцию:");
-            Console.WriteLine("1. Калькулятор");
-            Console.WriteLine("2. Генератор случайных чисел");
-            Console.WriteLine("3. Проверка палиндрома");
-            Console.WriteLine("4. Конвертер температуры");
-            Console.WriteLine("0. Выход");
             
             bool running = true;
             while (running)
             {
+                Console.WriteLine("\nВыберите функцию:");
+                Console.WriteLine("1. Калькулятор");
+                Console.WriteLine("2. Генератор случайных чисел");
+                Console.WriteLine("3. Проверка палиндрома");
+                Console.WriteLine("4. Конвертер температуры");
+                Console.WriteLine("0. Выход");
+                
                 Console.Write("\nВведите номер функции: ");
                 string input = Console.ReadLine();
                 
@@ -66,13 +148,13 @@ namespace ConsoleAppWithGit
                         RunCalculator();
                         break;
                     case "2":
-                        Console.WriteLine("Генератор случайных чисел - функция будет реализована");
+                        GenerateRandomNumbers();
                         break;
                     case "3":
-                        Console.WriteLine("Проверка палиндрома - функция будет реализована");
+                        CheckPalindrome();
                         break;
                     case "4":
-                        Console.WriteLine("Конвертер температуры - функция будет реализована");
+                        ConvertTemperature();
                         break;
                     case "0":
                         running = false;
@@ -87,3 +169,4 @@ namespace ConsoleAppWithGit
         }
     }
 }
+        
